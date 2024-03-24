@@ -1,12 +1,12 @@
-package com.ceudev.post;
+package com.ceudev.user;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class PostApplication {
+public class UserApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(PostApplication.class, args);
+        SpringApplication.run(UserApplication.class, args);
     }
 }

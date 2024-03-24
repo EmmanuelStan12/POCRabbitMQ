@@ -8,29 +8,36 @@ import java.util.List;
 @Service
 public class UserService {
     @Autowired
-    private PostRepository postRepository;
+    private UserRepository userRepository;
 
-    public List<Post> getAllPosts() {
-        return postRepository.findAll();
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
     }
 
-    public Post getPostById(Long id) throws Exception {
-        return postRepository.findById(id)
-                .orElseThrow(() -> new Exception("com.ceudev.post.Post not found with id " + id));
+    public User getUserById(Long id) throws Exception {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new Exception("User not found with id " + id));
     }
 
-    public Post addPost(Post post) {
-        return postRepository.save(post);
+    public User addUser(User user) {
+        return userRepository.save(user);
     }
 
-    public Post updatePost(Long id, Post post) throws Exception {
-        getPostById(id);
-        post.setId(id);
-        return postRepository.save(post);
+    public User updateUser(Long id, User user) throws Exception {
+        getUserById(id);
+        user.setId(id);
+        return userRepository.save(user);
     }
 
-    public void deletePost(Long id) throws Exception {
-        getPostById(id); // Check if the post exists
-        postRepository.deleteById(id);
+    public void deleteUser(Long id) throws Exception {
+        getUserById(id); // Check if the user exists
+        userRepository.deleteById(id);
+    }
+
+    public User follow(Long userId, Long followerId) throws Exception {
+        User user = getUserById(userId);
+        getUserById(followerId);
+        userRepository.follow(user, followerId);
+        return user;
     }
 }

@@ -6,33 +6,38 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/posts")
+@RequestMapping("/users")
 public class UserController {
     @Autowired
-    private PostService postService;
+    private UserService userService;
 
     @GetMapping
-    public List<Post> getAllPosts() {
-        return postService.getAllPosts();
+    public List<User> getAllUsers() {
+        return userService.getAllUsers();
     }
 
     @GetMapping("/{id}")
-    public Post getPostById(@PathVariable Long id) throws Exception {
-        return postService.getPostById(id);
+    public User getUserById(@PathVariable Long id) throws Exception {
+        return userService.getUserById(id);
     }
 
     @PostMapping
-    public Post addPost(@RequestBody Post post) {
-        return postService.addPost(post);
+    public User addUser(@RequestBody User user) {
+        return userService.addUser(user);
     }
 
     @PutMapping("/{id}")
-    public Post updatePost(@PathVariable Long id, @RequestBody Post post) throws Exception {
-        return postService.updatePost(id, post);
+    public User updateUser(@PathVariable Long id, @RequestBody User user) throws Exception {
+        return userService.updateUser(id, user);
+    }
+
+    @PutMapping("/follow")
+    public User follow(@RequestParam Long userId, @RequestParam Long followerId) throws Exception {
+        return userService.follow(userId, followerId);
     }
 
     @DeleteMapping("/{id}")
-    public void deletePost(@PathVariable Long id) throws Exception {
-        postService.deletePost(id);
+    public void deleteUser(@PathVariable Long id) throws Exception {
+        userService.deleteUser(id);
     }
 }

@@ -1,40 +1,44 @@
-package com.ceudev.post;
+package com.ceudev.user;
 
 import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
 @Repository
-public class PostRepository {
-    private final Map<Long, Post> postMap = new HashMap<>();
-    private long nextPostId = 1;
+public class UserRepository {
+    private final Map<Long, User> userMap = new HashMap<>();
+    private long nextUserId = 1;
 
-    // Save a post to the in-memory storage
-    public Post save(Post post) {
-        if (post.getId() == null) {
-            // If the post doesn't have an ID, assign one
-            post.setId(nextPostId++);
+    // Save a user to the in-memory storage
+    public User save(User user) {
+        if (user.getId() == null) {
+            // If the user doesn't have an ID, assign one
+            user.setId(nextUserId++);
         }
-        postMap.put(post.getId(), post);
-        return post;
+        userMap.put(user.getId(), user);
+        return user;
     }
 
-    // Retrieve a post by ID
-    public Optional<Post> findById(Long id) {
-        Post post = postMap.get(id);
-        if (post == null) {
+    // Retrieve a user by ID
+    public Optional<User> findById(Long id) {
+        User user = userMap.get(id);
+        if (user == null) {
             return Optional.empty();
         }
-        return Optional.of(post);
+        return Optional.of(user);
     }
 
-    // Retrieve all posts
-    public List<Post> findAll() {
-        return new ArrayList<>(postMap.values());
+    // Retrieve all users
+    public List<User> findAll() {
+        return new ArrayList<>(userMap.values());
     }
 
-    // Delete a post by ID
+    // Delete a user by ID
     public void deleteById(Long id) {
-        postMap.remove(id);
+        userMap.remove(id);
+    }
+
+    public void follow(User user, Long followerId) {
+        user.getFollowerIds().add(followerId);
     }
 }
