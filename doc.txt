@@ -1,0 +1,17 @@
+Proof of Concept for RabbitMQ
+
+     - Terminologies
+            - Message broker: A message broker is a middleware software component that facilitates
+            communication between different applications or services by enabling asynchronous messaging.
+            It acts as an intermediary layer that receives, routes, and delivers messages between sender and receiver applications.
+            Message brokers play a crucial role in distributed systems, decoupling producers and
+            consumers of messages, enabling scalability, reliability, and flexibility in system architectures. A message broker typically consists of
+                - Exchange: An exchange receives messages from the producers and routes them to message queues based on the routing metadata of the message
+                or the routing rules defined by the bindings. Interestingly, how messages are sent are dependent on the metadata of the message and not so much
+                on the default configuration of the exchange. RabbitMQ supports different types of exchange including:
+                    - Direct: which makes use of a routing key to send a message to a corresponding message queue, typically a message queue is connected
+                    to an exchange through the binding key, so it uses the binding key and routing key of a message to figure out the queue to get a message.
+                    - Fan out: This simply send the message to all queues.
+                    - Topics: This is useful when messages are to be routed to multiple queues based on patterns declared in the message's metadata. They still use the
+                    binding and routing keys, however, they use wildcard characters to perform pattern matching, so it's not an actual match.
+                    - Headers:
