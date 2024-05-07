@@ -29,15 +29,16 @@ RabbitMQ is an open-source message broker software written in Erlang. It is comm
 
 Since our project utilizes a single Spring application for both server and client functionality, we'll likely leverage a Topic Exchange for point-to-point communication. The application will act as both a producer (publishing messages) and a consumer (receiving messages).
 
-Benefits of RabbitMQ in POC:
+## Benefits of RabbitMQ in POC:
 
-Decoupling: Sender and receiver are loosely coupled, allowing independent development and deployment.
+- Decoupling: Sender and receiver are loosely coupled, allowing independent development and deployment.
 Scalability: Message handling scales by adding more consumers or producers as needed.
-Asynchronous Communication: Improves application responsiveness by processing messages asynchronously.
+- Asynchronous Communication: Improves application responsiveness by processing messages asynchronously.
 Reliability: RabbitMQ offers features like message persistence and retries for reliable delivery.
 Next Steps:
 
-Explore Spring AMQP functionalities for integrating RabbitMQ messaging into our application.
-Define specific message formats and exchange/queue configurations based on our POC requirements.
-Implement message publishing and consumption logic within the Spring application.
+## Explore Spring AMQP functionalities for integrating RabbitMQ messaging into our application.
+- Define specific message formats and exchange/queue configurations based on our POC requirements.
+- Implement message publishing and consumption logic within the Spring application.
+
 Remember: This document provides a basic overview. Refer to the official RabbitMQ documentation for a deeper understanding of concepts and configuration options.
